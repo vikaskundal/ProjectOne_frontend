@@ -1,15 +1,16 @@
 import React from 'react';
 const ImageBannerWithText = () => {
   return (
-    <div className="flex items-center justify-between p-6 bg-red-500">
+    <div className="flex items-center justify-between p-6 bg-red-100">
       <div className="w-1/2">
+     
         <img
           src="src/Images/slider-image2.jpg" // Replace this with your banner image URL
           alt="Banner"
           className="w-full h-auto rounded-lg shadow-lg"
         />
       </div>
-      <div className="w-1/2 p-6 bg-green-500 rounded-lg mx-3">
+      <div className="w-1/2 p-6  rounded-lg mx-3">
         <h2 className="font-serif text-3xl font-bold mb-4 ">Dont go with Trend. Be the Trend</h2>
         <p className="font-serif text-lg mb-6">
         

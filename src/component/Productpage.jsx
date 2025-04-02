@@ -1,6 +1,9 @@
 // src/components/ProductPage.jsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; // Assuming you are using react-router-dom for links
+import { useCart } from "./CartContext";
+import NavigationBar from './Navigation';
+
 
 // Sample Product Data
 const productData = {
@@ -32,14 +35,17 @@ const productData = {
 
 const ProductPage = () => {
   const [selectedVariant, setSelectedVariant] = useState(productData.variants[0]);
+  const { addToCart } = useCart();
 
   return (
+
     <section className="py-12 bg-gray-100">
       {/* New Section Before Everything */}
       <div className="flex justify-between items-center p-6 bg-red-100 shadow-md">
     
         <h1 className="text-3xl font-bold text-center w-1/2">Sass Hair@Makeup</h1>
         </div>
+        <NavigationBar/>
       
       {/* Existing Product Page Content */}
       <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-md overflow-hidden p-6 mt-6">
@@ -75,6 +81,7 @@ const ProductPage = () => {
               ))}
             </div>
           </div>
+          
 
           {/* Product Details */}
           <div className="md:w-1/2 md:pl-12 flex flex-col justify-center">
@@ -84,7 +91,10 @@ const ProductPage = () => {
               {productData.price}
             </p>
             <div className="flex space-x-4 mb-6">
-              <button className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">
+              <button className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
+              onClick={()=>{addToCart(selectedVariant);
+                alert(`${selectedVariant.name} added to cart!`); 
+              }}>
                 Add to Cart
               </button>
               <button className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300">

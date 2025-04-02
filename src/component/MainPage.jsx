@@ -2,16 +2,20 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Login from './Login';
 import Signup from './signup';
+import BeforeAfterSlider from './BeforeAfterSlider';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 
 import { ImageSlider } from './ImageSlider';
 import ImageBannerWithText from './ImageBanner';
-import BurgerMenuCard from './BurgerMenu';
+import NavigationBar from './Navigation';
+import { useCart } from './CartContext';
+
 
 const MainLayout = () => {
   const [component, setComponent] = useState(null);
   const [showLogout, setShowLogout] = useState(false);
+  
 
   const handleLogoutClick = () => {
     setShowLogout(false);
@@ -33,13 +37,14 @@ const MainLayout = () => {
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="flex justify-between items-center p-6 bg-red-100 shadow-md">
-      <BurgerMenuCard/>
+      
         <h1 className="text-3xl font-bold text-center w-1/2">Sass Hair@Makeup</h1>
+        
         <div className="w-1/4 flex justify-end">
           {!showLogout ? (
             <>
               <button
-                className={`px-6 py-3 mr-4 font-semibold rounded-full transition duration-300 ease-in-out ${
+                className={`px-4 py-3 mr-4 font-semibold rounded-full transition duration-300 ease-in-out ${
                   component === 'login'
                     ? 'bg-blue-500 text-white hover:bg-blue-600'
                     : 'bg-gray-200 text-black hover:bg-gray-300'
@@ -72,6 +77,7 @@ const MainLayout = () => {
           )}
         </div>
       </div>
+      <NavigationBar/>
 
       {/* Image Slider Positioned Below Login/Signup */}
       <div className="mt-8">
@@ -331,6 +337,7 @@ const MainLayout = () => {
     </div>
   </div>
 </div>
+            <BeforeAfterSlider/>
             <ImageBannerWithText />
 
 
