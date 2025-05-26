@@ -1,51 +1,74 @@
+// src/components/CartPage.jsx
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "./CartContext";
-import { Link } from "react-router-dom";  // Import Link from react-router-dom
 
 const CartPage = () => {
-  const { cart, removeFromCart } = useCart();  // Use removeFromCart here
+  const { cart, removeFromCart, clearCart } = useCart();
+  const navigate = useNavigate();
 
-  // Calculate total price with proper fallback handling
-  const totalPrice = cart
-    .reduce((total, item) => {
-      const price = item.price ? item.price.replace('$', '') : '0'; // Ensure price is a string
-      return total + parseFloat(price || 0);  // Convert to float and add to total
-    }, 0)
-    .toFixed(2);
+  const calculateTotal = () => {
+    return cart.reduce((total, item) => {
+      const price = typeof item.price === 'number' 
+        ? item.price 
+        : parseFloat(item.price.replace(/[^0-9.-]+/g, ''));
+      return total + (price * (item.quantity || 1));
+    }, 0).toFixed(2);
+  };
+
+  const totalPrice = calculateTotal();
+
+  const handleCheckout = () => {
+    navigate('/checkout');
+  };
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
       <h1 className="text-3xl font-bold mb-6 text-center">Your Cart</h1>
-
+      
       {cart.length === 0 ? (
         <p className="text-center text-gray-600">Your cart is empty.</p>
       ) : (
         <>
           <ul>
-            {cart.map((item, index) => (
-              <li key={index} className="flex justify-between items-center p-4 border-b">
-                <div className="flex items-center">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-20 h-20 object-cover rounded-lg mr-4"
-                  />
-                  <div>
-                    <h3 className="text-lg font-semibold">{item.name}</h3>
-                    <p className="text-gray-600">{item.variant}</p> {/* If you have variant info */}
+            {cart.map((item, index) => {
+              const price = typeof item.price === 'number' 
+                ? item.price 
+                : parseFloat(item.price.replace(/[^0-9.-]+/g, ''));
+              const itemTotal = price * (item.quantity || 1);
+
+              return (
+                <li key={index} className="flex justify-between items-center p-4 border-b">
+                  
+                  <div className="flex items-center">
+  <Link to={`/products/${item.id}`} className="flex items-center">
+    <img
+      src={item.imageUrl}
+      alt={item.name}
+      className="w-20 h-20 object-cover rounded-lg mr-4"
+    />
+    <div>
+      <h3 className="text-lg font-semibold hover:text-blue-600 transition-colors">
+        {item.name}
+      </h3>
+      <p className="text-gray-600">Quantity: {item.quantity || 1}</p>
+    </div>
+  </Link>
+</div>
+                  <div className="text-right">
+                    <p className="text-lg font-semibold text-green-600">
+                      ${itemTotal.toFixed(2)}
+                    </p>
+                    <button
+                      className="mt-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+                      onClick={() => removeFromCart(index)}
+                    >
+                      Remove
+                    </button>
                   </div>
-                </div>
-                <div className="text-right">
-                  <p className="text-lg font-semibold text-green-600">{item.price}</p>
-                  <button
-                    className="mt-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-300"
-                    onClick={() => removeFromCart(index)} // Call removeFromCart on click
-                  >
-                    Remove
-                  </button>
-                </div>
-              </li>
-            ))}
+                </li>
+              );
+            })}
           </ul>
 
           <div className="mt-6 flex justify-between items-center border-t pt-4">
@@ -53,13 +76,19 @@ const CartPage = () => {
             <p className="text-2xl font-bold text-green-600">${totalPrice}</p>
           </div>
 
-          <div className="mt-6 flex justify-center space-x-4">
-            <button className="px-8 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">
-              Checkout
+          <div className="mt-6 flex justify-between">
+            <button
+              className="px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300"
+              onClick={clearCart}
+            >
+              Clear Cart
             </button>
-            <Link to="/" className="px-8 py-3 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition duration-300">
-              Continue Shopping
-            </Link>
+            <button
+              className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
+              onClick={handleCheckout}
+            >
+              Proceed to Checkout
+            </button>
           </div>
         </>
       )}

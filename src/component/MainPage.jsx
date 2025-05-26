@@ -3,13 +3,16 @@ import { Link } from 'react-router-dom';
 import Login from './Login';
 import Signup from './signup';
 import BeforeAfterSlider from './BeforeAfterSlider';
+import Sidebar from './Sidebar'
+import AllProducts from './AllProducts';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 
 import { ImageSlider } from './ImageSlider';
 import ImageBannerWithText from './ImageBanner';
-import NavigationBar from './Navigation';
-import { useCart } from './CartContext';
+import Footer from './Footer';
+
+
 
 
 const MainLayout = () => {
@@ -36,11 +39,10 @@ const MainLayout = () => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <div className="flex justify-between items-center p-6 bg-red-100 shadow-md">
+      <div className="flex justify-end items-center p-4 bg-red-100 shadow-md">
       
-        <h1 className="text-3xl font-bold text-center w-1/2">Sass Hair@Makeup</h1>
-        
-        <div className="w-1/4 flex justify-end">
+              
+        <div className="w-1/4 flex ">
           {!showLogout ? (
             <>
               <button
@@ -77,12 +79,14 @@ const MainLayout = () => {
           )}
         </div>
       </div>
-      <NavigationBar/>
+
+      
 
       {/* Image Slider Positioned Below Login/Signup */}
       <div className="mt-8">
         <ImageSlider />
       </div>
+      
 
       {/* Conditional rendering of Login or Signup components */}
       {component === 'login' && (
@@ -103,124 +107,18 @@ const MainLayout = () => {
   <h1 className=" font-serif text-3xl font-bold text-white">Featured Collection</h1>
 </div>
       {/* Sections below the image */}
-      <div className="mt-12 px-6 pb-12">
-  <div className="bg-gray-200 border-2 border-black rounded-xl p-6">
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <Link to="/productpage">
-      <div className="bg-white p-6 rounded-lg shadow-md h-64 group relative">
-  {/* Image */}
-  <img
-    src="/src/images/sliderimage7.jpg" // Replace this with your image URL
-    alt="Product Sample"
-    className="w-full h-full object-cover rounded-lg transition duration-300 ease-in-out"
-  />
-  
-  {/* Hover Effect - Dark Overlay */}
-  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition duration-300 ease-in-out rounded-lg flex items-center justify-center">
-    {/* Text with Price */}
-    <span className="text-white text-xl font-bold opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out">
-      $29.99
-    </span>
-  </div>
-</div>
-      </Link>
-      <Link to="/productpage">
-      <div className="bg-white p-6 rounded-lg shadow-md h-64 group relative">
-  {/* Image */}
-  <img
-    src="/src/images/sliderImage5.jpg" // Replace this with your image URL
-    alt="Product Sample"
-    className="w-full h-full object-cover rounded-lg transition duration-300 ease-in-out"
-  />
-  
-  {/* Hover Effect - Dark Overlay */}
-  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition duration-300 ease-in-out rounded-lg flex items-center justify-center">
-    {/* Text with Price */}
-    <span className="text-white text-xl font-bold opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out">
-      $19.99
-    </span>
-  </div>
-</div>
-</Link>
-      <Link to="/productpage">
-      <div className="bg-white p-6 rounded-lg shadow-md h-64 group relative">
-  {/* Image */}
-  <img
-    src="/src/images/makeup1.jpg" // Replace this with your image URL
-    alt="Product Sample"
-    className="w-full h-full object-cover rounded-lg transition duration-300 ease-in-out"
-  />
-  
-  {/* Hover Effect - Dark Overlay */}
-  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition duration-300 ease-in-out rounded-lg flex items-center justify-center">
-    {/* Text with Price */}
-    <span className="text-white text-xl font-bold opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out">
-      $49.99
-    </span>
-  </div>
-</div>
-      </Link>
-      <Link to="/productpage">
-      <div className="bg-white p-6 rounded-lg shadow-md h-64 group relative">
-  {/* Image */}
-  <img
-    src="/src/images/makeup3.jpg" // Replace this with your image URL
-    alt="Product Sample"
-    className="w-full h-full object-cover rounded-lg transition duration-300 ease-in-out"
-  />
-  
-  {/* Hover Effect - Dark Overlay */}
-  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition duration-300 ease-in-out rounded-lg flex items-center justify-center">
-    {/* Text with Price */}
-    <span className="text-white text-xl font-bold opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out">
-      $39.99
-    </span>
-  </div>
-</div>
-      </Link>
-      <Link to="/productpage">
-      <div className="bg-white p-6 rounded-lg shadow-md h-64 group relative">
-  {/* Image */}
-  <img
-    src="/src/images/makeup2.jpg" // Replace this with your image URL
-    alt="Product Sample"
-    className="w-full h-full object-cover rounded-lg transition duration-300 ease-in-out"
-  />
-  
-  {/* Hover Effect - Dark Overlay */}
-  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition duration-300 ease-in-out rounded-lg flex items-center justify-center">
-    {/* Text with Price */}
-    <span className="text-white text-xl font-bold opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out">
-      $29.99
-    </span>
-  </div>
-</div>
-      </Link>
-      <Link to="/productpage">
-      <div className="bg-white p-6 rounded-lg shadow-md h-64 group relative">
-  {/* Image */}
-  <img
-    src="/src/images/makeup4.jpg" // Replace this with your image URL
-    alt="Product Sample"
-    className="w-full h-full object-cover rounded-lg transition duration-300 ease-in-out"
-  />
-  
-  {/* Hover Effect - Dark Overlay */}
-  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition duration-300 ease-in-out rounded-lg flex items-center justify-center">
-    {/* Text with Price */}
-    <span className="text-white text-xl font-bold opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out">
-      $19.99
-    </span>
-  </div>
-</div>
-      </Link>
-    </div>
-  </div>
-</div>
+
+      <AllProducts/>
+      
 
 <div className="bg-black rounded-xl border-2 border-gray-300 text-center p-6 my-6">
   <h1 className="font-serif text-3xl font-bold text-white">Top-Picked</h1>
 </div>
+<div className='flex'>
+  <Sidebar/>
+
+</div>
+    
 
       {/* Second section */}
         <div className="mt-6 px-6 pb-12">
@@ -230,7 +128,7 @@ const MainLayout = () => {
         <div className="bg-white p-6 rounded-lg shadow-md h-64 group relative">
     {/* Image */}
     <img
-        src="/src/images/makeup5.jpg" // Replace this with your image URL
+        src="Images/makeup5.jpg" // Replace this with your image URL
         alt="Product Sample"
         className="w-full h-full object-cover rounded-lg transition duration-300 ease-in-out"
     />
@@ -248,7 +146,7 @@ const MainLayout = () => {
         <div className="bg-white p-6 rounded-lg shadow-md h-64 group relative">
     {/* Image */}
     <img
-        src="/src/images/makeup6.jpg" // Replace this with your image URL
+        src="Images/makeup6.jpg" // Replace this with your image URL
         alt="Product Sample"
         className="w-full h-full object-cover rounded-lg transition duration-300 ease-in-out"
     />
@@ -266,7 +164,7 @@ const MainLayout = () => {
         <div className="bg-white p-6 rounded-lg shadow-md h-64 group relative">
     {/* Image */}
     <img
-        src="/src/images/makeup7.jpg" // Replace this with your image URL
+        src="Images/makeup7.jpg" // Replace this with your image URL
         alt="Product Sample"
         className="w-full h-full object-cover rounded-lg transition duration-300 ease-in-out"
     />
@@ -284,7 +182,7 @@ const MainLayout = () => {
         <div className="bg-white p-6 rounded-lg shadow-md h-64 group relative">
     {/* Image */}
     <img
-        src="/src/images/makeup8.jpg" // Replace this with your image URL
+        src="Images/makeup8.jpg" // Replace this with your image URL
         alt="Product Sample"
         className="w-full h-full object-cover rounded-lg transition duration-300 ease-in-out"
     />
@@ -302,7 +200,7 @@ const MainLayout = () => {
         <div className="bg-white p-6 rounded-lg shadow-md h-64 group relative">
     {/* Image */}
     <img
-        src="/src/images/makeup9.jpg" // Replace this with your image URL
+        src="Images/makeup9.jpg" // Replace this with your image URL
         alt="Product Sample"
         className="w-full h-full object-cover rounded-lg transition duration-300 ease-in-out"
     />
@@ -320,7 +218,7 @@ const MainLayout = () => {
         <div className="bg-white p-6 rounded-lg shadow-md h-64 group relative">
     {/* Image */}
     <img
-        src="/src/images/makeup10.jpg" // Replace this with your image URL
+        src="Images/makeup10.jpg" // Replace this with your image URL
         alt="Product Sample"
         className="w-full h-full object-cover rounded-lg transition duration-300 ease-in-out"
     />
@@ -342,22 +240,8 @@ const MainLayout = () => {
 
 
                                 {/*footer*/}
-<footer className="bg-gray-900 text-white py-4 mt-12 flex justify-between items-center px-6">
-  {/* Left Section: All rights reserved */}
-  <div className="text-lg">
-    <p>© 2024 Team Project-One. All rights reserved.</p>
-  </div>
 
-  {/* Right Section: Social Media Links */}
-  <div className="flex space-x-4 ">
-    <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-pink-500">
-      <i className="fab fa-instagram text-xl"></i> {/* Instagram Icon */}
-    </a>
-    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500">
-      <i className="fab fa-facebook text-xl"></i> {/* Facebook Icon */}
-    </a>
-  </div>
-</footer>
+            <Footer/>
       
     </div>
   );

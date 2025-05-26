@@ -1,29 +1,43 @@
-import React, { createContext, useState, useContext } from "react";
+// src/context/CartContext.jsx
+import React, { createContext, useContext, useState } from 'react';
 
-// Create Context
 const CartContext = createContext();
 
-// Provider Component
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
-  // Function to Add Item to Cart
-  const addToCart = (product) => {
-    setCart((prevCart) => [...prevCart, product]);
-    console.log("Added to cart:", product);
+  const addToCart = (item) => {
+    setCart([...cart, item]);
   };
+
   const removeFromCart = (index) => {
-    setCart(cart.filter((_, i) => i !== index)); // Filter out the item by index
+    const newCart = [...cart];
+    newCart.splice(index, 1);
+    setCart(newCart);
+  };
+
+  const clearCart = () => {
+    setCart([]);
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart }}>
+    <CartContext.Provider 
+      value={{ 
+        cart, 
+        addToCart, 
+        removeFromCart, 
+        clearCart 
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
 };
 
-// Custom Hook for Using Cart
 export const useCart = () => {
-  return useContext(CartContext);
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error('useCart must be used within a CartProvider');
+  }
+  return context;
 };

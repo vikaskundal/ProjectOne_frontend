@@ -1,11 +1,11 @@
 import React from 'react';
 const ImageBannerWithText = () => {
   return (
-    <div className="flex items-center justify-between p-6 bg-red-100">
+    <div className="flex items-center justify-between p-6 bg-black-100">
       <div className="w-1/2">
      
         <img
-          src="src/Images/slider-image2.jpg" // Replace this with your banner image URL
+          src="/Images/slider-image2.jpg" 
           alt="Banner"
           className="w-full h-auto rounded-lg shadow-lg"
         />

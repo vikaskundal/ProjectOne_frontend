@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 
+
+
 export function ImageSlider() {
   // Array of image URLs for the slider
   const images = [
-    "src/images/sliderImage3.jpg",
-    "src/images/slider-image2.jpg",
-    "src/images/sliderimage5.jpg",
+    "/Images/sliderImage3.jpg",
+    "/Images/slider-image2.jpg",
+    "/Images/sliderImage5.jpg",
     
   ];
 

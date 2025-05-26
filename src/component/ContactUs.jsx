@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 const ContactUsPage = () => {
+  const formRef = useRef();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -14,16 +17,32 @@ const ContactUsPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you can handle the form submission (e.g., sending to a server or email)
-    alert("Your message has been sent!");
-    setFormData({ name: "", email: "", message: "" }); // Reset form
+
+    emailjs
+      .sendForm(
+         "service_iawnouq",
+        "template_r1t40cb",      
+             
+        formRef.current,
+        "mcBUiKgauov6CGpeb"       
+      )
+      .then(
+        (result) => {
+          alert("Your message has been sent!");
+          setFormData({ name: "", email: "", message: "" });
+        },
+        (error) => {
+          console.error("Failed to send message:", error);
+          alert("Failed to send message. Please try again later.");
+        }
+      );
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
       <div className="w-full max-w-lg bg-white p-8 rounded-lg shadow-lg">
         <h2 className="text-3xl font-semibold text-center mb-6">Contact Us</h2>
-        <form onSubmit={handleSubmit}>
+        <form ref={formRef} onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="name" className="block text-lg font-medium text-gray-700">
               Name

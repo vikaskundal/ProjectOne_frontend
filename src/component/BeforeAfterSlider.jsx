@@ -7,20 +7,20 @@ import "swiper/css/pagination";
 
 const BeforeAfterSlider = () => {
   const images = [
-   "src/images/BeforeAfter1.jpg",
-   "src/images/BeforeAfter2.jpg",
-   "src/images/BeforeAfter3.jpg",
-   "src/images/BeforeAfter4.jpg",
-   "src/images/BeforeAfter5.jpg",
-   "src/images/BeforeAfter6.jpg",
-   "src/images/BeforeAfter7.jpg",
-   "src/images/BeforeAfter8.jpg"
+   "/Images/BeforeAFTER1.JPG",
+   "/Images/BeforeAFTER2.JPG",
+   "/Images/BeforeAFTER3.JPG",
+   "/Images/BeforeAFTER4.JPG",
+   "/Images/BeforeAFTER5.JPG",
+   "/Images/BeforeAFTER6.JPG",
+   "/Images/BeforeAFTER7.JPG",
+   "/Images/BeforeAFTER8.JPG"
   ];
 
  
 
   return (
-    <div className="flex items-center justify-between p-4 bg-red-100">
+    <div className="flex items-center justify-between p-4 bg-black-100">
         <div className="w-1/2 p-6 mx-7  rounded-lg ">
       <h2 className="font-serif text-3xl font-bold mb-4">
       See the Difference—Glow Like Never Before!

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+
 const ProductList = () => {
   const [products, setProducts] = useState([]);
 
@@ -9,7 +10,7 @@ const ProductList = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/products"); // Update with your backend URL
+        const response = await axios.get("http://localhost:3000/products"); // Update with your backend URL
         setProducts(response.data);
       } catch (error) {
         console.error("Error fetching products:", error);
