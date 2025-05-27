@@ -22,7 +22,7 @@ const ProductPage = () => {
         setLoading(true);
         const [productRes, productsRes] = await Promise.all([
           axios.get('https://final-project-4-kjpv.onrender.com/api/products/${id}'),
-          axios.get('${process.env.REACT_APP_API_URL}/api/products')
+          axios.get('https://final-project-4-kjpv.onrender.com/api/products')
         ]);
         
         setProduct(productRes.data);
