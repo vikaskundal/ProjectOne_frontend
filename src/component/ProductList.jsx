@@ -10,7 +10,7 @@ const ProductList = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/products"); // Update with your backend URL
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/products`); // Update with your backend URL
         setProducts(response.data);
       } catch (error) {
         console.error("Error fetching products:", error);

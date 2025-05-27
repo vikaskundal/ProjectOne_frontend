@@ -11,7 +11,7 @@ const ForgotPassword = ({ handleBackToLogin }) => {
     setLoading(true);
     setMessage('');
     try {
-      const res = await axios.post('http://localhost:3000/auth/forgot-password', { email });
+      const res = await axios.post('https://final-project-4-kjpv.onrender.com/auth/forgot-password', { email });
       setMessage(res.data.message); // Server returns: "Password reset link sent to your email"
     } catch (error) {
       setMessage(
