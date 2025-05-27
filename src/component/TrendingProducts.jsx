@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useCart } from "./CartContext";
+import { FaStar, FaRegStar } from "react-icons/fa";
 
 const TrendingProducts = () => {
   const [products, setProducts] = useState([]);
@@ -23,92 +24,88 @@ const TrendingProducts = () => {
     fetchTrendingProducts();
   }, []);
 
-  const handleAddToCart = (product, e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    addToCart(product);
-  };
-
-  if (loading) {
+  const renderStars = (rating) => {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-200"></div>
+      <div className="flex justify-center mt-2">
+        {Array.from({ length: 5 }, (_, i) =>
+          i < rating ? (
+            <FaStar key={i} className="text-blue-400" />
+          ) : (
+            <FaRegStar key={i} className="text-blue-200" />
+          )
+        )}
       </div>
     );
-  }
+  };
 
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-red-200 to-white">
-      {/* Hero Section */}
-      <div className="bg-pink-600 text-white py-16">
-        <div className="container mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold  mb-4">Trending Now</h1>
-          <p className="text-xl md:text-2xl opacity-90">
-            Shop our most popular products
-          </p>
+  return loading ? (
+    <div className="flex justify-center items-center min-h-screen">
+      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-400"></div>
+    </div>
+  ) : (
+    <div className="bg-white text-black font-sans">
+      {/* Top Navigation */}
+      <div className="bg-gray-300 px-4 py-2 flex justify-between items-center text-sm">
+        <span className="font-bold">Trending_Sass hair @ makeup</span>
+        <div className="space-x-4">
+          <Link to="/contactus" className="text-blue-600 hover:underline">Contact us</Link>
+          <Link to="/aboutus" className="text-blue-600 hover:underline">About us</Link>
+          <Link to="/trending" className="text-blue-600 hover:underline">Trending</Link>
         </div>
       </div>
 
-      {/* Products Grid */}
-      <div className="container mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {products.map((product) => (
-            <div 
-              key={product._id}
-              className="group relative bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
-            >
-              <Link to={`/product/${product._id}`} className="block">
-                {/* Product Image */}
-                <div className="h-64 overflow-hidden">
-                  <img
-                    src={product.imageUrl}
-                    alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
+      {/* Title */}
+      <h1 className="text-3xl font-bold text-center my-6">Sass hair <span className="text-pink-500">@makeup</span></h1>
 
-                {/* Trending Badge */}
-                <div className="absolute top-4 left-4 bg-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                  TRENDING
-                </div>
-
-                {/* Product Info */}
-                <div className="p-5">
-                  <div className="flex justify-between items-start mb-2">
-                    <h3 className="text-lg font-bold text-gray-800 truncate">
-                      {product.name}
-                    </h3>
-                    <span className="text-pink-500 font-bold">
-                      ${product.price.toFixed(2)}
-                    </span>
-                  </div>
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                    {product.description}
-                  </p>
-                </div>
+      {/* Hot Products Section */}
+      <section className="px-4 mb-10">
+        <h2 className="text-xl font-bold mb-4 text-center">Hot Products</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 justify-center">
+          {products.slice(0, 4).map(product => (
+            <div key={product._id} className="text-center">
+              <Link to={`/product/${product._id}`}>
+                <img src={product.imageUrl} alt={product.name} className="w-[95px] h-[85px] object-cover mx-auto border" />
+                {renderStars(Math.floor(product.rating || 3))}
               </Link>
-
-              {/* Add to Cart Button */}
-              <div className="px-5 pb-5">
-                <button
-                  onClick={(e) => handleAddToCart(product, e)}
-                  className="w-full bg-pink-500 hover:bg-pink-600 text-white py-2 px-4 rounded-md transition-colors duration-300 flex items-center justify-center"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 mr-2"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
-                  </svg>
-                  Add to Cart
-                </button>
-              </div>
             </div>
           ))}
         </div>
-      </div>
+      </section>
+
+      {/* Trending Feature Skins */}
+      <section className="bg-gray-100 px-4 py-6 text-center">
+        <h2 className="text-xl font-bold mb-2">Trending Feature skins</h2>
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+          <img src={products[4]?.imageUrl} alt="Trending Skin" className="w-[136px] h-[112px] object-cover border" />
+          <p className="max-w-md text-gray-700">
+            Long body text - Minantia non modo formaeque in meis acervo formaeque gravitate erat indigestaque habentia fixo mutatas aliud orbis retinebat qui non alta
+          </p>
+        </div>
+      </section>
+
+      {/* Customer Feedback */}
+      <section className="px-4 py-6">
+        <h2 className="text-xl font-bold text-center mb-4">Customer Feedbacks</h2>
+        <div className="flex flex-col md:flex-row gap-4 justify-center">
+          <div className="border border-blue-500 p-4 rounded-md flex items-center gap-3 max-w-sm">
+            <div className="w-12 h-12 border rounded-full flex justify-center items-center text-blue-500">👤</div>
+            <p className="text-sm text-gray-700">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam qui, <span className="text-red-500 font-bold">elementum id</span>.
+            </p>
+          </div>
+          <div className="border border-blue-500 p-4 rounded-md flex items-center gap-3 max-w-sm">
+            <div className="w-12 h-12 border rounded-full flex justify-center items-center text-blue-500">👤</div>
+            <p className="text-sm text-gray-700">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam qui, <span className="text-red-500 font-bold">elementum id</span>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-white py-4 text-center border-t text-black font-semibold">
+        @copyright
+      </footer>
     </div>
   );
 };
