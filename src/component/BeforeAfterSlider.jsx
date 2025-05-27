@@ -7,14 +7,9 @@ import "swiper/css/pagination";
 
 const BeforeAfterSlider = () => {
   const images = [
-   "/Images/BeforeAFTER1.JPG",
-   "/Images/BeforeAFTER2.JPG",
-   "/Images/BeforeAFTER3.JPG",
-   "/Images/BeforeAFTER4.JPG",
-   "/Images/BeforeAFTER5.JPG",
-   "/Images/BeforeAFTER6.JPG",
-   "/Images/BeforeAFTER7.JPG",
-   "/Images/BeforeAFTER8.JPG"
+   "/Images/after1.jpg",
+   "/Images/after2.jpg",
+   "/Images/after3.jpg"
   ];
 
  
