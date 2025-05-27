@@ -44,18 +44,9 @@ const TrendingProducts = () => {
     </div>
   ) : (
     <div className="bg-white text-black font-sans">
-      {/* Top Navigation */}
-      <div className="bg-gray-300 px-4 py-2 flex justify-between items-center text-sm">
-        <span className="font-bold">Trending_Sass hair @ makeup</span>
-        <div className="space-x-4">
-          <Link to="/contactus" className="text-blue-600 hover:underline">Contact us</Link>
-          <Link to="/aboutus" className="text-blue-600 hover:underline">About us</Link>
-          <Link to="/trending" className="text-blue-600 hover:underline">Trending</Link>
-        </div>
-      </div>
 
       {/* Title */}
-      <h1 className="text-3xl font-bold text-center my-6">Sass hair <span className="text-pink-500">@makeup</span></h1>
+      <h1 className="text-3xl font-bold text-center my-6">Treding <span className="text-pink-500">Products</span></h1>
 
       {/* Hot Products Section */}
       <section className="px-4 mb-10">
@@ -78,7 +69,8 @@ const TrendingProducts = () => {
         <div className="flex flex-col md:flex-row items-center justify-center gap-6">
           <img src={products[4]?.imageUrl} alt="Trending Skin" className="w-[136px] h-[112px] object-cover border" />
           <p className="max-w-md text-gray-700">
-            Long body text - Minantia non modo formaeque in meis acervo formaeque gravitate erat indigestaque habentia fixo mutatas aliud orbis retinebat qui non alta
+           Glow Boosting Face Serum
+Get radiant, dewy skin with every drop - your glow-up starts here!
           </p>
         </div>
       </section>
@@ -90,13 +82,15 @@ const TrendingProducts = () => {
           <div className="border border-blue-500 p-4 rounded-md flex items-center gap-3 max-w-sm">
             <div className="w-12 h-12 border rounded-full flex justify-center items-center text-blue-500">👤</div>
             <p className="text-sm text-gray-700">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam qui, <span className="text-red-500 font-bold">elementum id</span>.
+              This serum gave my skin a glow I didn’t know was possible. Lightweight, non-greasy, and smells amazing!"
+
+, <span className="text-red-500 font-bold">John</span>.
             </p>
           </div>
           <div className="border border-blue-500 p-4 rounded-md flex items-center gap-3 max-w-sm">
             <div className="w-12 h-12 border rounded-full flex justify-center items-center text-blue-500">👤</div>
             <p className="text-sm text-gray-700">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam qui, <span className="text-red-500 font-bold">elementum id</span>.
+             Absolutely love this foundation! Blends perfectly and stays on all day without cracking." <span className="text-red-500 font-bold">Michael</span>.
             </p>
           </div>
         </div>
@@ -104,7 +98,7 @@ const TrendingProducts = () => {
 
       {/* Footer */}
       <footer className="bg-white py-4 text-center border-t text-black font-semibold">
-        @copyright
+        @saas&beauty
       </footer>
     </div>
   );
